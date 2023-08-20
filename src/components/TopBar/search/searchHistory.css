@@ -1,0 +1,13 @@
+
+.results-list {
+    width: 100%;
+    background-color: inherit;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    box-shadow: 0 0 0 #c5c4c4;
+    border-radius: 5px;
+    margin-top: 2px;
+    max-height: 300px;
+    padding: 5px;
+}
