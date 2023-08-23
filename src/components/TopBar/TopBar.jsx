@@ -14,6 +14,7 @@ import SearchHistory from "./search/SearchHistory";
 import { useRef } from "react";
 import { useEffect } from "react";
 
+
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -36,69 +37,16 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 150,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(2em + ${theme.spacing(2)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-}));
 
 const TopBar = ({ open, handleDrawerOpen, setMode }) => {
-  const serchInp = useRef();
+ 
 
-  let search = localStorage.getItem("search");
-
-  const getLocalStorage = () => {
-    if (search) {
-      return (search = JSON.parse(localStorage.getItem("search")));
-    } else {
-      return [];
-    }
-  };
   const theme = useTheme();
-  const [serchHistory, setSerchHistory] = useState("");
-  const [localSerchHistory, setLocalSerchHistory] = useState([]);
-  const [displayResults, setDisplayResults] = useState(false);
-{/*const [displaySearchInput, setDisplaySearchInput] = useState(false);*/}
 
-  useEffect(() => {
-    let seData = getLocalStorage();
-    seData.push(serchHistory);
-    setLocalSerchHistory(seData);
-  }, [serchHistory]);
 
-  const handleSerch = () => {
-    serchHistory && localStorage.setItem("search", JSON.stringify(localSerchHistory));
-    search && setDisplayResults(!displayResults);
-    setSerchHistory("");
-  };
-  const desplayHandler = () => {
-    search && setDisplayResults(!displayResults);
-  };
+
+
+
   return (
     <AppBar position="fixed" open={open}>
       <Toolbar>
@@ -114,36 +62,14 @@ const TopBar = ({ open, handleDrawerOpen, setMode }) => {
           }}
         >
           <MenuIcon />
-        </IconButton>
-
+        </IconButton>    
         
-        <Box
-          sx={{
-            position: "relative",
-          }}
-        >
-          <Search style={{
-            transition: "2 s" ,
-          
-          }}>
-            <StyledInputBase
-              placeholder="بحث…"
-              inputProps={{ "aria-label": "search" }}
-              onChange={(e) => setSerchHistory(() => e.target.value)}
-              onClick={desplayHandler}
-              ref={serchInp}
-              value={serchHistory}
-            />
-            {displayResults && <SearchHistory SearchHistory={localSerchHistory} />}
-          </Search>
-        </Box>
+        
 
-        <IconButton color="inherit" onClick={handleSerch}>
-        {" "}
-        <SearchIcon />{" "}
-      </IconButton>
-    
+    <SearchHistory/>
+
         <Box flexGrow={1} />
+     
 
         {theme.palette.mode === "light" ? (
           <IconButton
@@ -174,7 +100,6 @@ const TopBar = ({ open, handleDrawerOpen, setMode }) => {
             <LightModeTwoToneIcon />
           </IconButton>
         )}
-
         <AppBarBox />
       </Toolbar>
     </AppBar>

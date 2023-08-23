@@ -9,5 +9,20 @@
     border-radius: 5px;
     margin-top: 2px;
     max-height: 300px;
-    padding: 5px;
+}
+
+.valu-item {
+    
+    flex-grow: 1;
+}
+
+
+.dropdown-row {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin-inline: 5px ;
 }

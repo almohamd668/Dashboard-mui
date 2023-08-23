@@ -49,8 +49,6 @@ const SidBarList = ({arr}) => {
         </ListItem>
         
       ))}
-
-      
       </List>
 
       <Divider />
